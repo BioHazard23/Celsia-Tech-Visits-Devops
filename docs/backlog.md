@@ -1,6 +1,8 @@
 # Product Backlog — Celsia Tech Visits
 
-> Este documento detalla la estructura del producto organizado por Épicas, Features y User Stories, alineado con la implementación del MVP.
+> Este es el link del tablero de Azure DevOps: https://dev.azure.com/celsia-tech-visits/celsia-tech-visits
+
+En dado caso de necesitar acceso al tablero, favor solicitarlo al correo [jumarana1007@gmail.com], indicando el correo electrónico con el que se desea acceder.
 
 ---
 
@@ -74,3 +76,11 @@ Automatización del ciclo de vida de la aplicación.
 - **Docker:** Imágenes optimizadas (Multi-stage build) para Backend (.NET 8) y Frontend (Nginx).
 - **Orquestación:** Archivo `docker-compose.yml` funcional para despliegue local.
 - **Pipelines:** Definición en Azure DevOps (`backend-ci.yml`, `cd-azure-appservice.yml`) para Build, Test y Deploy automático.
+
+
+
+**Capturas Tablero Azure DevOps**
+
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
