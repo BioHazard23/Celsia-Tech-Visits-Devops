@@ -76,7 +76,7 @@ docker-compose up --build
 ```
 
 - Frontend: `http://localhost:3000`
-- Backend: `http://localhost:5157`
+- Backend: `http://localhost:5157/swagger/index.html`
 
 ## Features
 
