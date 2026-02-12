@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Celsia.TechVisits.Api.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f5cf85810db4afe5d26b1d747c5bc6ea33ec6864")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+34789cfe12805fc1c25d0973b93405aa723e21f1")]
 [assembly: System.Reflection.AssemblyProductAttribute("Celsia.TechVisits.Api.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Celsia.TechVisits.Api.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

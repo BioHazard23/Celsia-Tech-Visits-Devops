@@ -2,7 +2,7 @@
 
 La solución está diseñada para operar en un entorno de nube **PaaS (Platform as a Service)** en Microsoft Azure, garantizando alta disponibilidad y menor carga operativa.
 
-![alt text](<Arquitectura de Despliegue (Azure).drawio.png>)
+![alt text](<images/Arquitectura de Despliegue (Azure).drawio.png>)
 
 ## Componentes de la Solución
 
@@ -26,7 +26,7 @@ Utiliza **SQLite** gestionado a través de **Entity Framework Core**.
 ### 4. Contenerización (Docker)
 La solución es totalmente compatible con Docker para garantizar consistencia entre entornos.
 
-![alt text](<Contenerización (Docker).drawio.png>)
+![alt text](<images/Contenerización (Docker).drawio.png>)
 
 ## Estrategia de Calidad y DevOps
 
@@ -49,7 +49,7 @@ La solución adhiere a las mejores prácticas de **CI/CD (Integración y Desplie
 
 ## Modelo de Datos
 
-![alt text](<Modelo de Datos.drawio.png>)
+![alt text](<images/Modelo de Datos.drawio.png>)
 
 ## Beneficios Clave para el Negocio
 - ** Eficiencia Operativa**: Reducción significativa de la carga en el Contact Center.
