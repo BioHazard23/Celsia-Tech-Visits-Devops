@@ -1,0 +1,91 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  sonarProjectKey: 'celsia-tech-visits'
+
+steps:
+# .NET SDK
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'
+
+# SonarQube - Prepare
+- task: SonarQubePrepare@6
+  displayName: 'SonarQube - Prepare Analysis'
+  inputs:
+    SonarQube: 'SonarQubeConnection'
+    scannerMode: 'MSBuild'
+    projectKey: '$(sonarProjectKey)'
+    projectName: 'Celsia Tech Visits'
+    extraProperties: |
+      sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/backend/Celsia.TechVisits.Api.Tests/coverage.xml
+      sonar.exclusions=**/node_modules/**,**/bin/**,**/obj/**,**/dist/**
+
+# Restore
+- task: DotNetCoreCLI@2
+  displayName: 'Restore'
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+
+# Build
+- task: DotNetCoreCLI@2
+  displayName: 'Build'
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+# Run Tests with Coverage
+- task: DotNetCoreCLI@2
+  displayName: 'Run Tests with Coverage'
+  inputs:
+    command: 'test'
+    projects: '**/Celsia.TechVisits.Api.Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./coverage.xml'
+
+# SonarQube - Analyze
+- task: SonarQubeAnalyze@6
+  displayName: 'SonarQube - Run Analysis'
+
+# SonarQube - Publish Quality Gate
+- task: SonarQubePublish@6
+  displayName: 'SonarQube - Publish Quality Gate'
+  inputs:
+    pollingTimeoutSec: '300'
+
+# Publish Backend Artifact
+- task: DotNetCoreCLI@2
+  displayName: 'Publish Backend'
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop-backend'
+    publishLocation: 'Container'
+
+# Publish Test Results
+- task: PublishTestResults@2
+  displayName: 'Publish Test Results'
+  inputs:
+    testResultsFormat: 'VSTest'
+    testResultsFiles: '**/*.trx'
+    mergeTestResults: true
+
+# Publish Coverage Results
+- task: PublishCodeCoverageResults@2
+  displayName: 'Publish Coverage'
+  inputs:
+    summaryFileLocation: '$(Build.SourcesDirectory)/backend/Celsia.TechVisits.Api.Tests/coverage.xml'

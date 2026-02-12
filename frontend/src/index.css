@@ -1,0 +1,276 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* ===== Celsia Brand Design System ===== */
+:root {
+  /* Celsia Brand Colors */
+  --celsia-orange: #E8611A;
+  --celsia-orange-light: #F28C50;
+  --celsia-orange-dark: #C74E10;
+  --celsia-orange-50: #FFF3EB;
+  --celsia-orange-100: #FFE0CC;
+  --celsia-gray-900: #1A1A2E;
+  --celsia-gray-800: #2D2D44;
+  --celsia-gray-700: #4A4A5A;
+  --celsia-gray-100: #F5F5F7;
+  --celsia-white: #FFFFFF;
+}
+
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(135deg, #FFF3EB 0%, #FFFFFF 40%, #F5F5F7 100%);
+  min-height: 100vh;
+  color: var(--celsia-gray-900);
+}
+
+/* Animated Background Accent */
+.celsia-bg-pattern {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.celsia-bg-pattern::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -30%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 97, 26, 0.08) 0%, transparent 70%);
+  animation: float 20s ease-in-out infinite;
+}
+
+.celsia-bg-pattern::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -20%;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(232, 97, 26, 0.05) 0%, transparent 70%);
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -30px) scale(1.05);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
+}
+
+/* Card Glass Effect */
+.celsia-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(232, 97, 26, 0.1);
+  border-radius: 24px;
+  box-shadow:
+    0 4px 6px rgba(0, 0, 0, 0.04),
+    0 10px 30px rgba(232, 97, 26, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.celsia-card:hover {
+  box-shadow:
+    0 8px 12px rgba(0, 0, 0, 0.06),
+    0 20px 40px rgba(232, 97, 26, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  transform: translateY(-2px);
+}
+
+/* Input Styles */
+.celsia-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 15px;
+  color: var(--celsia-gray-900);
+  background: var(--celsia-white);
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.celsia-input:focus {
+  border-color: var(--celsia-orange);
+  box-shadow: 0 0 0 4px rgba(232, 97, 26, 0.1);
+}
+
+.celsia-input::placeholder {
+  color: #9CA3AF;
+}
+
+/* Select Styles */
+.celsia-select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #E5E7EB;
+  border-radius: 12px;
+  font-size: 15px;
+  color: var(--celsia-gray-900);
+  background: var(--celsia-white);
+  transition: all 0.3s ease;
+  outline: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%239CA3AF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  cursor: pointer;
+}
+
+.celsia-select:focus {
+  border-color: var(--celsia-orange);
+  box-shadow: 0 0 0 4px rgba(232, 97, 26, 0.1);
+}
+
+/* Button Styles */
+.celsia-btn {
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.celsia-btn-primary {
+  background: linear-gradient(135deg, var(--celsia-orange) 0%, var(--celsia-orange-dark) 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(232, 97, 26, 0.35);
+}
+
+.celsia-btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(232, 97, 26, 0.45);
+}
+
+.celsia-btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(232, 97, 26, 0.3);
+}
+
+/* Label Styles */
+.celsia-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--celsia-gray-700);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Status Messages */
+.celsia-status-success {
+  background: #ECFDF5;
+  color: #065F46;
+  border: 1px solid #A7F3D0;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  animation: slideUp 0.3s ease;
+}
+
+.celsia-status-error {
+  background: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  animation: slideUp 0.3s ease;
+}
+
+.celsia-status-loading {
+  background: var(--celsia-orange-50);
+  color: var(--celsia-orange-dark);
+  border: 1px solid var(--celsia-orange-100);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Logo Styles */
+.celsia-logo {
+  height: 60px;
+  width: auto;
+  transition: transform 0.3s ease;
+}
+
+.celsia-logo:hover {
+  transform: scale(1.05);
+}
+
+/* Divider */
+.celsia-divider {
+  height: 3px;
+  width: 60px;
+  background: linear-gradient(90deg, var(--celsia-orange), var(--celsia-orange-light));
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+/* Field Error Styles */
+.celsia-input-error {
+  border-color: #EF4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1) !important;
+}
+
+.celsia-field-error {
+  color: #DC2626;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 6px;
+  padding-left: 2px;
+  animation: slideUp 0.2s ease;
+}

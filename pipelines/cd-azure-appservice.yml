@@ -1,0 +1,54 @@
+trigger:
+- none
+
+resources:
+  pipelines:
+  - pipeline: backend-ci
+    source: backend-ci
+    trigger: true
+  - pipeline: frontend-ci
+    source: frontend-ci
+    trigger: true
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+- stage: DeployBackend
+  displayName: 'Deploy Backend'
+  jobs:
+  - job: Deploy
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'specific'
+        project: 'CelsiaTechVisits'
+        definition: 'backend-ci'
+        artifactName: 'drop-backend'
+        targetPath: '$(Pipeline.Workspace)/backend'
+
+    - task: AzureWebApp@1
+      inputs:
+        azureSubscription: 'AzureConnection'
+        appName: 'celsia-tech-visits-api'
+        package: '$(Pipeline.Workspace)/backend/**/*.zip'
+
+- stage: DeployFrontend
+  displayName: 'Deploy Frontend'
+  jobs:
+  - job: Deploy
+    steps:
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        buildType: 'specific'
+        project: 'CelsiaTechVisits'
+        definition: 'frontend-ci'
+        artifactName: 'drop-frontend'
+        targetPath: '$(Pipeline.Workspace)/frontend'
+
+    - task: AzureWebApp@1
+      inputs:
+        azureSubscription: 'AzureConnection'
+        appName: 'celsia-tech-visits-web'
+        package: '$(Pipeline.Workspace)/frontend'
+        # Deploy to Azure App Service (Windows/Linux)

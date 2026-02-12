@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/Celsia.TechVisits.Api.props" />
+</Project>
